@@ -15,12 +15,17 @@ public class Task {
     private Priority priority;
     private Status status;
 
-    //todo: конструктор
-    public Task(int id, String name) {
+
+    //todo Новый конструктор, который принимает ВСЕ данные
+    public Task(int id, String name, String description, LocalDate deadline, Priority priority) {
         this.id = id;
         this.name = name;
-        this.status = Status.PENDING; // По умолчанию новая задача "ожидает"
+        this.description = description;
+        this.deadline = deadline; // Вот теперь дедлайн сохраняется внутри объекта!
+        this.priority = priority;
+        this.status = Status.PENDING; // По умолчанию новая задача всегда "ожидает"
     }
+
 //todo set an get
     public int getId() {return id;}
 
@@ -53,6 +58,17 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Задача #" + id + ": " + name + " | Статус: " + status;
+        String descText = (description != null) ? description : "нет";
+        String dateText = (deadline != null) ? deadline.toString() : "не задан";
+
+        return "Задача #" + id + " [" + priority + "]" +
+                "\n  Название: " + name +
+                "\n  Описание: " + descText +
+                "\n  Дедлайн: " + dateText + // <- Проверьте наличие этой строки!
+                "\n  Статус: " + status;
     }
+
 }
+
+
+
