@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TaskHandlerImpl implements ITaskHandler {
+public class InMemoryTaskHandler implements ITaskHandler {
 
     private final List<Task> tasks;
     private int nextId = 1; //todo Простой генератор ID
 
-    public TaskHandlerImpl() {
+    public InMemoryTaskHandler() {
         this.tasks = new ArrayList<>();
     }
 

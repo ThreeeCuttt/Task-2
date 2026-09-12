@@ -1,60 +1,92 @@
 import java.time.LocalDate;
+
 enum Priority {
     LOW, MEDIUM, HIGH
 }
+
 enum Status {
     PENDING, IN_PROGRESS, DONE
 }
+
 public class Task {
 
-    // 1. Поля (данные)
-    private int id; // Уникальный номер
+    private int id;
     private String name;
     private String description;
-    private LocalDate deadline; // Дедлайн (год-месяц-день)
+    private LocalDate deadline;
     private Priority priority;
     private Status status;
 
+    // ID пользователя, которому принадлежит задача.
+    // Пока будет использоваться только при хранении в базе данных.
+    private int userId;
 
-    //todo Новый конструктор, который принимает ВСЕ данные
-    public Task(int id, String name, String description, LocalDate deadline, Priority priority) {
+    public Task(int id, String name, String description,
+                LocalDate deadline, Priority priority) {
+
         this.id = id;
         this.name = name;
         this.description = description;
-        this.deadline = deadline; // Вот теперь дедлайн сохраняется внутри объекта!
+        this.deadline = deadline;
         this.priority = priority;
-        this.status = Status.PENDING; // По умолчанию новая задача всегда "ожидает"
+        this.status = Status.PENDING;
     }
 
-//todo set an get
-    public int getId() {return id;}
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
-    public String getName() {return name;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setName(String name) {this.name = name;}
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getDescription() {return description;}
+    public LocalDate getDeadline() {
+        return deadline;
+    }
 
-    public void setDescription(String description) {this.description = description;}
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
 
+    public Priority getPriority() {
+        return priority;
+    }
 
-    public LocalDate getDeadline() {return deadline;}
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
 
-    public void setDeadline(LocalDate deadline) {this.deadline = deadline;}
+    public Status getStatus() {
+        return status;
+    }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
-    public Priority getPriority() {return priority;}
+    public int getUserId() {
+        return userId;
+    }
 
-    public void setPriority(Priority priority) {this.priority = priority;}
-
-
-    public Status getStatus() {return status;}
-
-    public void setStatus(Status status) {this.status = status;}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {
@@ -64,10 +96,9 @@ public class Task {
         return "Задача #" + id + " [" + priority + "]" +
                 "\n  Название: " + name +
                 "\n  Описание: " + descText +
-                "\n  Дедлайн: " + dateText + // <- Проверьте наличие этой строки!
+                "\n  Дедлайн: " + dateText +
                 "\n  Статус: " + status;
     }
-
 }
 
 
